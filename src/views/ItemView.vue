@@ -3,8 +3,10 @@
     <section>
       <!-- User Info -->
       <user-profile :info="question">
-        <router-link slot="username" :to="`/user/${question.user}`">{{ question.user }}</router-link>
-        <div slot="time">{{ 'posted ' + question.time_ago }}</div>
+        <router-link slot="username" :to="`/user/${question.user}`">{{
+          question.user
+        }}</router-link>
+        <div slot="time">{{ "posted " + question.time_ago }}</div>
       </user-profile>
     </section>
     <section>
@@ -18,43 +20,45 @@
 </template>
 
 <script>
-import UserProfile from '../components/UserProfile.vue';
+import UserProfile from "../components/UserProfile.vue";
+import EndSpinnerMixin from "../mixins/EndSpinnerMixin";
 
 export default {
   components: {
     UserProfile,
   },
   computed: {
-    question(){
+    question() {
       return this.$store.state.asking;
-    }
+    },
   },
-  created(){
+  mixins: [EndSpinnerMixin],
+  created() {
     const itemId = this.$route.params.id;
-    this.$store.dispatch('FETCH_ASKING',itemId);
-  }
-}
+    this.$store.dispatch("FETCH_ASKING", itemId);
+  },
+};
 </script>
 
 <style scoped>
-.user-container{
-  display:flex;
-  align-items:center;
+.user-container {
+  display: flex;
+  align-items: center;
 }
-.fa-user{
+.fa-user {
   font-size: 2rem;
   padding: 10px;
 }
-.time{
+.time {
   font-size: 0.8rem;
 }
-.title{
+.title {
   padding-right: 20px;
 }
-h3{
+h3 {
   padding: 20px;
 }
-.content{
+.content {
   padding: 0px 20px;
 }
 </style>

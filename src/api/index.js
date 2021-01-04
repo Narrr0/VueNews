@@ -4,7 +4,6 @@ import axios from 'axios';
 const config = {
   baseUrl: 'https://api.hnpwa.com/v0/'
 }
-
 // 2. API 함수
 function fetchList(pageName){
   return axios.get(`${config.baseUrl}${pageName}/1.json`);

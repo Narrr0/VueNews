@@ -1,4 +1,4 @@
-import { fetchUserInfo, fetchAsking, fetchList } from '../api/index.js';
+import { fetchAsking, fetchList, fetchUserInfo } from '../api/index.js';
 
 export default {
   // FETCH_LIST(context, pageName){
@@ -16,13 +16,13 @@ export default {
     try {
       const response = await fetchList(pageName);
       context.commit('SET_LIST', response.data);
+      console.log('FETCH_LIST');
       return response;
     }
     catch(error){
-      console.log(error)
+      console.log(error);
     }
   },
-
   // FETCH_USER(context, name) {
   //   return fetchUserInfo(name)
   //     .then(response => {
@@ -34,17 +34,17 @@ export default {
   //       console.log(error);
   //     })
   // },
-  async FETCH_USER(context, name) {
+  async FETCH_USER(context, userName){
     try {
-      const response = await fetchUserInfo(name);
-      context.commmit('SET_USER', response.data);
-      return response.data;
+      const response = await fetchUserInfo(userName);
+      context.commit('SET_USER', response.data);
+      console.log('FETCH_USER');
+      return response;
     }
     catch(error){
       console.log(error);
     }
   },
-  
   // FETCH_ASKING(context, id){{
   //   return fetchAsking(id)
   //     .then(response => {
@@ -61,7 +61,8 @@ export default {
     try{
       const response = await fetchAsking(id);
       context.commit('SET_ASKING', response.data);
-      return response.data;
+      console.log('FETCH_ASKING');
+      return response;
     }
     catch(error){
       console.log(error);
